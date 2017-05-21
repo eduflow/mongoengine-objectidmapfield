@@ -1,0 +1,14 @@
+# Compiled source #
+###################
+*.pyc
+
+# Packages #
+############
+*.egg
+/.eggs
+*.egg-info
+
+# Tests #
+#########
+.cache
+__pycache__
