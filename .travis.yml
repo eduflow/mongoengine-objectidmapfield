@@ -21,7 +21,7 @@ install:
 - sudo apt-get install python-dev python3-dev libopenjpeg-dev zlib1g-dev libjpeg-turbo8-dev
   libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.5-dev tk8.5-dev
   python-tk
-- travis_retry pip install flake8 flake8-import-order flake8-putty
+- travis_retry pip install flake8 flake8-import-order
 - travis_retry pip install coveralls
 - travis_retry pip install tox>=1.9
 - travis_retry pip install virtualenv

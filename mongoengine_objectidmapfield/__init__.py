@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .fields import ObjectIdMapField  # flake8: disable=F401
+from .fields import ObjectIdMapField  # noqa: F401
 
 __author__ = 'Malthe Jørgensen'
 __all__ = ('ObjectIdMapField')
