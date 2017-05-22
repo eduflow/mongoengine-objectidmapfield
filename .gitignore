@@ -12,3 +12,5 @@
 #########
 .cache
 __pycache__
+/.tox
+/.coverage
