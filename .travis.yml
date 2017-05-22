@@ -5,7 +5,8 @@ python:
 - '3.5'
 - '3.6'
 - pypy
-- pypy3
+# - pypy3.3-5.5.0 # Disable PyPy3 on Travis CI for now
+# (See: https://github.com/travis-ci/travis-ci/issues/6277)
 services:
     - mongodb
 matrix:
@@ -22,7 +23,7 @@ install:
   python-tk
 - travis_retry pip install coveralls
 - travis_retry pip install tox>=1.9
-- travis_retry pip install "virtualenv<14.0.0"  # virtualenv>=14.0.0 has dropped Python 3.2 support (and pypy3 is based on py32)
+- travis_retry pip install virtualenv
 - travis_retry tox -e $(echo py$TRAVIS_PYTHON_VERSION | tr -d . | sed -e 's/pypypy/pypy/') -- -e test
 script:
 - tox -e $(echo py$TRAVIS_PYTHON_VERSION | tr -d . | sed -e 's/pypypy/pypy/') -- --cov-report= --cov=mongoengine_objectidmapfield
