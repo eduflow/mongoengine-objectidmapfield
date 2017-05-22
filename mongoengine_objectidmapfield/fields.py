@@ -7,6 +7,19 @@ import six
 __all__ = ('ObjectIdMapField')
 
 
+def _to_mongo_safe_call(instance, value, use_db_field=True, fields=None):
+    '''MongoEngine helper method introduced in v0.10.7'''
+    f_inputs = instance.to_mongo.__code__.co_varnames
+    ex_vars = {}
+    if 'fields' in f_inputs:
+        ex_vars['fields'] = fields
+
+    if 'use_db_field' in f_inputs:
+        ex_vars['use_db_field'] = use_db_field
+
+    return instance.to_mongo(value, **ex_vars)
+
+
 class ObjectIdMapField(MapField):
     '''Similar to a MongoEngine `MapField`, but where keys are `ObjectId`s instead
     of strings'''
@@ -28,6 +41,6 @@ class ObjectIdMapField(MapField):
 
     def to_mongo(self, value, use_db_field=True, fields=None):
         return {
-            str(key): self.field._to_mongo_safe_call(item, use_db_field, fields)
+            str(key): _to_mongo_safe_call(self.field, item, use_db_field, fields)
             for key, item in six.iteritems(value)
         }
