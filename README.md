@@ -1,6 +1,9 @@
 mongoengine-objectidmapfield
 ============================
 
+[![Travis CI build status](https://travis-ci.org/peergradeio/mongoengine-objectidmapfield.svg?branch=master)](https://travis-ci.org/peergradeio/mongoengine-objectidmapfield)
+[![Coverage Status](https://coveralls.io/repos/github/peergradeio/mongoengine-objectidmapfield/badge.svg?branch=master)](https://coveralls.io/github/peergradeio/mongoengine-objectidmapfield?branch=master)
+
 `mongoengine-objectidmapfield` implements the MongoEngine `ObjectIdMapField` which
 is the regular `MapField`, but instead of string as keys has `ObjectId`s as keys.
 
