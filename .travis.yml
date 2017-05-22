@@ -21,13 +21,22 @@ install:
 - sudo apt-get install python-dev python3-dev libopenjpeg-dev zlib1g-dev libjpeg-turbo8-dev
   libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.5-dev tk8.5-dev
   python-tk
+- travis_retry pip install flake8 flake8-import-order flake8-putty
 - travis_retry pip install coveralls
 - travis_retry pip install tox>=1.9
 - travis_retry pip install virtualenv
 - travis_retry tox -e $(echo py$TRAVIS_PYTHON_VERSION | tr -d . | sed -e 's/pypypy/pypy/') -- -e test
+
+
+# Run flake8 for py27
+before_script:
+- if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then flake8 .; else echo "flake8 only runs on py27"; fi
+
 script:
 - tox -e $(echo py$TRAVIS_PYTHON_VERSION | tr -d . | sed -e 's/pypypy/pypy/') -- --cov-report= --cov=mongoengine_objectidmapfield
+
 after_script: coveralls --verbose
+
 branches:
   only:
   - master
