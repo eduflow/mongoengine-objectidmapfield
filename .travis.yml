@@ -40,3 +40,6 @@ branches:
   only:
   - master
   - /^v.*$/
+
+notifications:
+  email: false
