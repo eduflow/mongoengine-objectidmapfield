@@ -1,6 +1,7 @@
 
 from bson import ObjectId
 from mongoengine.fields import MapField
+import six
 
 
 __all__ = ('ObjectIdMapField')
@@ -18,7 +19,7 @@ class ObjectIdMapField(MapField):
         if not all(map(lambda k: isinstance(k, ObjectId), value.keys())):
             msg = 'Invalid key in `ObjectIdMapField` - keys must be `ObjectId`s.'
             self.error(msg)
-        super(MapField, self).validate({str(key): val for key, val in value.iteritems()})
+        super(MapField, self).validate({str(key): val for key, val in six.iteritems(value)})
 
     def to_python(self, value):
         '''Convert a MongoDB-compatible type to a Python type.'''
@@ -28,5 +29,5 @@ class ObjectIdMapField(MapField):
     def to_mongo(self, value, use_db_field=True, fields=None):
         return {
             str(key): self.field._to_mongo_safe_call(item, use_db_field, fields)
-            for key, item in value.iteritems()
+            for key, item in six.iteritems(value)
         }

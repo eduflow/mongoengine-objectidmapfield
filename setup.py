@@ -32,7 +32,7 @@ setup(
         'Topic :: Database',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    install_requires=['mongoengine'],
+    install_requires=['mongoengine', 'six'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     test_suite='tests',
